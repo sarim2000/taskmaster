@@ -1,0 +1,21 @@
+{
+  "name": "taskmaster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@types/inquirer": "^9.0.7",
+    "commander": "^11.1.0",
+    "inquirer": "^8.0.0"
+  }
+}
