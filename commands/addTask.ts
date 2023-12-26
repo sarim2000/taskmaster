@@ -4,7 +4,7 @@ import { join } from "path";
 export const addTaskHandler = (taskName: string) => {
   const filePath = join(__dirname, "../database/tasks.csv");
 
-  // Read the existing tasks to determine the next ID
+  
   readFile(filePath, "utf8", (err, data) => {
     if (err && err.code !== "ENOENT") {
       console.error("Error reading tasks file: ", err.message);
@@ -12,9 +12,9 @@ export const addTaskHandler = (taskName: string) => {
     }
 
     const tasks = data ? data.split("\n") : [];
-    const nextId = tasks.length; // Incremental ID, simple implementation
+    const nextId = tasks.length; 
 
-    const newTask = `\n${nextId},${taskName},,,false`; // Format: id,name,starttime,endtime,completed
+    const newTask = `\n${nextId},${taskName},,,false`; 
 
     appendFile(filePath, newTask, "utf8", (err) => {
       if (err) {

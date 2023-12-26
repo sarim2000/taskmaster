@@ -1,5 +1,6 @@
 import { Command } from "commander";
 import { addTaskHandler } from "./commands/addTask";
+import { deleteTaskHandler } from "./commands/deleteTask";
 import { listTaskHandler } from "./commands/listTask";
 import { updateTaskHandler } from "./commands/updateTask";
 
@@ -27,12 +28,20 @@ program
 
 program
   .command("updateTask")
-  .description("List all tasks")
+  .description("Update Task")
   .argument("id","id to update")
-  .argument("completed","Task Completion Status")
-  .action((id,completed) => {
-    console.log('options.completed', completed)
-    updateTaskHandler(parseInt(id),completed)
+  .option("--completed <BOOLEAN>","Task Completion Status")
+  .action((id,options) => {
+    console.log("options.completed", options.completed);
+    updateTaskHandler(parseInt(id),options.completed)
+  });
+
+program
+  .command("deleteTask")
+  .description("Delete a specific task")
+  .argument("id", "task to delete")
+  .action((id) => {
+    deleteTaskHandler(parseInt(id));
   });
 
 program.parse(process.argv);

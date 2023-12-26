@@ -1,9 +1,8 @@
 import { readFile, writeFile } from "fs";
 import { join } from "path";
 
-export const updateTaskHandler = (
+export const deleteTaskHandler = (
   taskId: number,
-  updateCompleted: boolean
 ): void => {
   const filePath = join(__dirname, "../database/tasks.csv");
 
@@ -18,13 +17,10 @@ export const updateTaskHandler = (
     }
     let found = false;
     const lines = data.split("\n");
-    const updatedLines: string[] = lines.map((line) => {
-      const [id, name, completed] = line.split(",");
-      if (parseInt(id, 10) === taskId) {
-        found = true;
-        return `${id},${name},${updateCompleted}`;
-      }
-      return line;
+    const updatedLines: string[] = lines.filter((line) => {
+      const [id] = line.split(",");
+      if (parseInt(id) === taskId) found = true 
+      return parseInt(id) !== taskId;
     });
 
     if (!found) {
@@ -38,7 +34,7 @@ export const updateTaskHandler = (
         console.error("Error writing to tasks file:", writeErr.message);
         return;
       }
-      console.log(`Task with ID ${taskId} has been updated.`);
+      console.log(`Task with ID ${taskId} has been deleted.`);
     });
   });
 };

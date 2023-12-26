@@ -21,19 +21,17 @@ export const listTaskHandler = () => {
       .split("\n")
       .filter((line) => line)
       .map((line) => {
-        const [id, name, starttime, endtime, completed] = line.split(",");
+        const [id, name, completed] = line.split(",");
         return {
           id: parseInt(id, 10),
           name,
-          starttime,
-          endtime,
           completed: completed === "true",
         };
       });
 
     tasks.forEach((task) => {
       console.log(
-        `ID: ${task.id}, Name: ${task.name}, Start Time: ${task.starttime}, End Time: ${task.endtime}, Completed: ${task.completed}`
+        `ID: ${task.id}, Name: ${task.name}, Completed: ${task.completed}`
       );
     });
   });

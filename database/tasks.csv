@@ -1,3 +1,2 @@
-id,name,starttime,endtime,completed
-1,hello,,,false
-2,hellos,,,false
+id,name,completed
+2,hellos,false
